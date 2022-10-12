@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'menu_drawer_item.dart';
+import '../components/menu_drawer_item.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({

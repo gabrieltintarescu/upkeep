@@ -23,6 +23,8 @@ class MenuDrawerItem extends StatelessWidget {
       ),
       title: Text(
         title,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
         style: const TextStyle(color: Colors.white70),
       ),
     );

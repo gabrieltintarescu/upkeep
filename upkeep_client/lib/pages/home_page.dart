@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:upkeep_client/pages/dashboard_screen.dart';
+import 'package:upkeep_client/layouts/dashboard_screen.dart';
 
-import '../components/side_menu.dart';
+import '../layouts/side_menu.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
