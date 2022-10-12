@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:upkeep_client/pages/dashboard_screen.dart';
 
 import '../components/side_menu.dart';
 
@@ -10,15 +11,14 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Row(
-          children: [
-            const Expanded(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(
               child: SideMenu(),
             ),
             Expanded(
               flex: 5, // Main area takes 5/6 of screen width
-              child: Container(
-                color: Colors.blue,
-              ),
+              child: DashboardScreen(),
             ),
           ],
         ),

@@ -14,7 +14,9 @@ class SideMenu extends StatelessWidget {
         child: Column(
           children: [
             DrawerHeader(
-              child: Image.asset('assets/images/logo.png'),
+              child: Image.asset(
+                'assets/images/logo.png',
+              ),
             ),
             MenuDrawerItem(
               iconPath: 'assets/icons/menu_profile.svg',
