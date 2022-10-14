@@ -30,7 +30,7 @@ class ProfileCard extends StatelessWidget {
           if (!Responsive.isMobile(context))
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text('Teodor Nicolau'),
+              child: Text('Gabriel Tintarescu'),
             ),
           const Icon(Icons.keyboard_arrow_down)
         ],
