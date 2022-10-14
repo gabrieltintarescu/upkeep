@@ -1,24 +1,16 @@
-import 'dart:math';
-
 import 'package:advanced_datatable/advanced_datatable_source.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
+import 'package:upkeep_client/controllers/dashboard_controller.dart';
 import '../constants.dart';
+import '../models/user_response.dart';
 import '../responsive.dart';
 
-class RowData {
-  final int index;
-  final String value;
-  RowData(this.index, this.value);
-}
-
-class UsersDataSource extends AdvancedDataTableSource<RowData> {
-  final dataMockup = List<RowData>.generate(
-      121, (index) => RowData(index, 'Value for no. $index'));
+class UsersDataSource extends AdvancedDataTableSource<User> {
   final BuildContext context;
   UsersDataSource(this.context);
+  DashboardController controller = Get.find();
 
   @override
   bool get isRowCountApproximate => false;
@@ -28,15 +20,21 @@ class UsersDataSource extends AdvancedDataTableSource<RowData> {
   int get selectedRowCount => 0;
   @override
   DataRow getRow(int index) {
+    if (lastDetails == null) {
+      return DataRow(
+          cells: List.generate(4, (index) => const DataCell(Text('Nothing'))));
+    }
+    var currentUser = lastDetails!.rows[index];
+
     String image;
-    switch (Random().nextInt(3)) {
-      case 0:
+    switch (currentUser.type.toLowerCase()) {
+      case 'user':
         image = 'assets/icons/regular.svg';
         break;
-      case 1:
+      case 'admin':
         image = 'assets/icons/admin.svg';
         break;
-      case 2:
+      case 'banned':
         image = 'assets/icons/banned.svg';
         break;
       default:
@@ -55,8 +53,8 @@ class UsersDataSource extends AdvancedDataTableSource<RowData> {
               const SizedBox(width: defaultPadding / 2),
               ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: context.width / 4),
-                child: const Text(
-                  'Gabriel Tintarescu',
+                child: Text(
+                  currentUser.name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -67,8 +65,8 @@ class UsersDataSource extends AdvancedDataTableSource<RowData> {
         DataCell(
           ConstrainedBox(
             constraints: BoxConstraints(maxWidth: context.width / 4),
-            child: const Text(
-              'gabriel_tintarescu@yahoo.com',
+            child: Text(
+              currentUser.email,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -77,8 +75,8 @@ class UsersDataSource extends AdvancedDataTableSource<RowData> {
         DataCell(
           ConstrainedBox(
             constraints: BoxConstraints(maxWidth: context.width / 5),
-            child: const Text(
-              '0751954687',
+            child: Text(
+              currentUser.phone,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -88,30 +86,28 @@ class UsersDataSource extends AdvancedDataTableSource<RowData> {
           DataCell(
             ConstrainedBox(
               constraints: BoxConstraints(maxWidth: context.width / 4),
-              child: const Text(
-                'Admin',
+              child: Text(
+                currentUser.type,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
           ),
       ],
-      onSelectChanged: (b) => print("da ma $b"),
+      onSelectChanged: (b) => controller.openEditUser(currentUser),
     );
   }
 
   @override
-  Future<RemoteDataSourceDetails<RowData>> getNextPage(
+  Future<RemoteDataSourceDetails<User>> getNextPage(
       NextPageRequest pageRequest) async {
-    await Future.delayed(const Duration(seconds: 2));
-
-    //TODO Implement Server Pagination
-    //? we know pageRequest.offset and pageRequest.pagesize
+    await Future.delayed(const Duration(milliseconds: 1400));
+    var userResponse =
+        await controller.fetchUsers(pageRequest.offset, pageRequest.pageSize);
 
     return RemoteDataSourceDetails(
-      dataMockup.length,
-      dataMockup.skip(pageRequest.offset).take(pageRequest.pageSize).toList(),
-      filteredRows: dataMockup.length,
+      userResponse.count,
+      userResponse.users,
     );
   }
 }

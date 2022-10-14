@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:upkeep_client/components/users_chart.dart';
+import 'package:upkeep_client/controllers/dashboard_controller.dart';
 
 import '../constants.dart';
 
@@ -10,6 +12,7 @@ class UsersPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DashboardController controller = Get.find();
     return Column(
       children: [
         Row(

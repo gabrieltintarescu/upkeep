@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:upkeep_client/components/profile_card.dart';
 import 'package:upkeep_client/components/search_field.dart';
 
-import '../controllers/homepage_controller.dart';
+import '../controllers/dashboard_controller.dart';
 import '../responsive.dart';
 
-class DashboardHeader extends GetView<HomepageController> {
+class DashboardHeader extends GetView<DashboardController> {
   const DashboardHeader({
     Key? key,
   }) : super(key: key);

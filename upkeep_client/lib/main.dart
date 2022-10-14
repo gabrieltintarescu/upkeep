@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:upkeep_client/constants.dart';
-import 'package:upkeep_client/controllers/homepage_controller.dart';
+import 'package:upkeep_client/controllers/dashboard_controller.dart';
 import 'package:upkeep_client/pages/home_page.dart';
 
 main() {
@@ -11,7 +11,7 @@ main() {
     systemNavigationBarColor: bgColor, // navigation bar color
     statusBarColor: bgColor, // status bar color
   ));
-  Get.put(HomepageController());
+  Get.put(DashboardController());
   runApp(const App());
 }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:upkeep_client/controllers/homepage_controller.dart';
+import 'package:upkeep_client/controllers/dashboard_controller.dart';
 import 'package:upkeep_client/layouts/dashboard_screen.dart';
 import 'package:upkeep_client/responsive.dart';
 
@@ -8,7 +8,7 @@ import '../layouts/side_menu.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
-  HomepageController homeController = Get.find();
+  DashboardController homeController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

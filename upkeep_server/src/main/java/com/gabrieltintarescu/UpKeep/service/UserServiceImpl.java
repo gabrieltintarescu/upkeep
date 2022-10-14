@@ -36,7 +36,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> findUsersWithPagination(int offset, int pageSize) {
-        Page<User> users = userRepository.findAll(PageRequest.of(offset, pageSize));
+        int page = offset / pageSize;
+        Page<User> users = userRepository.findAll(PageRequest.of(page, pageSize));
+        log.error("Loadinng users: " + users.getContent().size());
         return  users;
     }
 
