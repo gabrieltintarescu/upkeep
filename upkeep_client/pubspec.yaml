@@ -44,6 +44,7 @@ dependencies:
   advanced_datatable: ^0.0.8
   shimmer: ^2.0.0
   http: ^0.13.5
+  entry: ^0.0.7
 
 dev_dependencies:
   flutter_test:

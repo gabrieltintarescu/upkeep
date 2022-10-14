@@ -29,7 +29,7 @@ class UsersPanel extends StatelessWidget {
                   vertical: defaultPadding,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () => controller.openAddUser(),
               icon: const Icon(Icons.add),
               label: const Text('Add New'),
             ),

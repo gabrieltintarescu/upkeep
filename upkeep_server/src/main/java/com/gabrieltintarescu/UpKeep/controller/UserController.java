@@ -5,8 +5,11 @@ import com.gabrieltintarescu.UpKeep.model.UserPageResponse;
 import com.gabrieltintarescu.UpKeep.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -37,5 +40,15 @@ public class UserController {
                 .count(userService.userCount())
                 .users(usersWithPagination.getContent())
                 .build();
+    }
+
+    @PostMapping("/save")
+    public User saveUser(@RequestBody User user) {
+        return userService.saveUser(user);
+    }
+
+    @PostMapping("/edit")
+    public User editUser(@RequestBody User user) {
+        return userService.editUser(user);
     }
 }

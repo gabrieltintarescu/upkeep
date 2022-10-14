@@ -31,14 +31,14 @@ class UserResponse {
 
 class User {
   User({
-    required this.id,
+    this.id,
     required this.name,
     required this.email,
     required this.phone,
     required this.type,
   });
 
-  final int id;
+  final int? id;
   final String name;
   final String email;
   final String phone;
